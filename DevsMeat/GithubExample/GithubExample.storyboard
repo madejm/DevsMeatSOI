@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="H8t-vW-VD7">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Github ExampleUI View Controller-->
+        <scene sceneID="BJe-Cs-LRC">
+            <objects>
+                <viewController storyboardIdentifier="GithubExample" id="H8t-vW-VD7" customClass="GithubExampleUIViewController" customModule="DevsMeat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9h1-pl-EWC"/>
+                        <viewControllerLayoutGuide type="bottom" id="5tT-Bz-wKd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bGs-Xz-fjS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ndI-MT-smE">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="REd-TD-qg5">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="issueCell" id="pCQ-mt-Tl8">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pCQ-mt-Tl8" id="fJP-Mp-8Fh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ndI-MT-smE" firstAttribute="top" secondItem="9h1-pl-EWC" secondAttribute="bottom" id="K7q-w8-fg9"/>
+                            <constraint firstAttribute="trailing" secondItem="REd-TD-qg5" secondAttribute="trailing" id="MPi-0V-F0C"/>
+                            <constraint firstItem="ndI-MT-smE" firstAttribute="leading" secondItem="bGs-Xz-fjS" secondAttribute="leading" id="SWH-Rf-l9q"/>
+                            <constraint firstItem="REd-TD-qg5" firstAttribute="leading" secondItem="bGs-Xz-fjS" secondAttribute="leading" id="iOr-op-Seu"/>
+                            <constraint firstAttribute="trailing" secondItem="ndI-MT-smE" secondAttribute="trailing" id="kK5-ts-amR"/>
+                            <constraint firstItem="5tT-Bz-wKd" firstAttribute="top" secondItem="REd-TD-qg5" secondAttribute="bottom" id="kP1-6I-NlU"/>
+                            <constraint firstItem="REd-TD-qg5" firstAttribute="top" secondItem="ndI-MT-smE" secondAttribute="bottom" id="qu8-mC-OVI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="ndI-MT-smE" id="z15-My-ULz"/>
+                        <outlet property="tableView" destination="REd-TD-qg5" id="Xtv-0l-dpQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KZV-58-nUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="121" y="-337"/>
+        </scene>
+    </scenes>
+</document>

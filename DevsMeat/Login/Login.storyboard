@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OYV-0k-aJ4">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="tUQ-71-qAs">
+            <objects>
+                <navigationController id="OYV-0k-aJ4" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8WO-p2-quu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bjw-2Z-Jai" kind="relationship" relationship="rootViewController" id="jdQ-2I-G69"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KZX-da-XDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-804" y="127"/>
+        </scene>
+        <!--Logowanie-->
+        <scene sceneID="PMB-Se-cSy">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" title="Logowanie" id="bjw-2Z-Jai" customClass="LoginViewController" customModule="DevsMeat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pVw-Nf-FMG"/>
+                        <viewControllerLayoutGuide type="bottom" id="02E-TG-HtX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ie5-2U-qm7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EFW-Ud-9vy">
+                                <rect key="frame" x="16" y="80" width="343" height="220"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nazwa użytkownika" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1k-ZK-G11">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QM6-DF-arH">
+                                        <rect key="frame" x="0.0" y="28.5" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0d-G8-et2">
+                                        <rect key="frame" x="0.0" y="66.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hasło" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPx-hC-8Hu">
+                                        <rect key="frame" x="0.0" y="95" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U0R-oX-BgG">
+                                        <rect key="frame" x="0.0" y="123.5" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TES-1I-wqb">
+                                        <rect key="frame" x="0.0" y="161.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qck-MU-1VL">
+                                        <rect key="frame" x="0.0" y="190" width="343" height="30"/>
+                                        <state key="normal" title="Zaloguj"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EFW-Ud-9vy" secondAttribute="trailing" constant="16" id="NVB-fL-742"/>
+                            <constraint firstItem="EFW-Ud-9vy" firstAttribute="top" secondItem="pVw-Nf-FMG" secondAttribute="bottom" constant="16" id="bmx-oh-H5F"/>
+                            <constraint firstItem="EFW-Ud-9vy" firstAttribute="leading" secondItem="ie5-2U-qm7" secondAttribute="leading" constant="16" id="lsQ-Cr-0vm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Logowanie" id="orC-rZ-HHd"/>
+                    <connections>
+                        <outlet property="loginButton" destination="Qck-MU-1VL" id="Ca7-XQ-WBu"/>
+                        <outlet property="passwordTextField" destination="U0R-oX-BgG" id="Efp-N3-oIt"/>
+                        <outlet property="passwordValidationLabel" destination="TES-1I-wqb" id="9YT-fb-m5g"/>
+                        <outlet property="usernameTextField" destination="QM6-DF-arH" id="yRQ-kG-CwA"/>
+                        <outlet property="usernameValidationLabel" destination="n0d-G8-et2" id="2VP-aj-wVR"/>
+                        <segue destination="ypG-uR-8ZY" kind="show" identifier="ShowFriends" id="sN9-lA-4mY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wNF-nI-NDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="108" y="128"/>
+        </scene>
+        <!--FriendListViewController-->
+        <scene sceneID="ITa-Sa-K77">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FriendList" referencedIdentifier="FriendListViewController" id="ypG-uR-8ZY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jan-fz-tCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="787" y="145"/>
+        </scene>
+    </scenes>
+</document>

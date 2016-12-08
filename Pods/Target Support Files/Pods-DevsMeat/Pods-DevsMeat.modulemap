@@ -1,0 +1,6 @@
+framework module Pods_DevsMeat {
+  umbrella header "Pods-DevsMeat-umbrella.h"
+
+  export *
+  module * { export * }
+}
