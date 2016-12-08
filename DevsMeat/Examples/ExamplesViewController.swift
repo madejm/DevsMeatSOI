@@ -16,6 +16,7 @@ class ExamplesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subscribeOn()
     }
     
     // MARK: just
@@ -33,6 +34,7 @@ class ExamplesViewController: UIViewController {
     */
     func justObservable() {
         // Stwórz sekwencje z jednym stringiem
+        let _ = Observable.just(1)
     }
     
     // MARK: from
@@ -49,6 +51,7 @@ class ExamplesViewController: UIViewController {
     */
     func fromObservable() {
         // Stwórz sekwencje z paroma intami
+        let _ = Observable.from([0,1,2])
     }
     
     // MARK: of
@@ -67,6 +70,7 @@ class ExamplesViewController: UIViewController {
     */
     func ofObservable() {
         // Stwórz sekwencje z paroma intami
+        let _ = Observable.of(1, 2, 3)
     }
     
     // MARK: create
@@ -83,6 +87,13 @@ class ExamplesViewController: UIViewController {
     */
     func createObservable() {
         // Stwórz sekwencje z paroma intami
+        let _ = Observable<Int>.create { (observer) -> Disposable in
+            observer.onNext(1)
+            observer.onNext(2)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
     }
     
     // MARK: subscribe
@@ -95,7 +106,9 @@ class ExamplesViewController: UIViewController {
     public func subscribe(_ on: @escaping (RxSwift.Event<Self.E>) -> Swift.Void) -> Disposable
     */
     func subscribe() {
-
+        let _ = Observable.from([1,2,3,4]).subscribe { (event) in
+            print(event)
+        }.addDisposableTo(disposeBag)
     }
     
     // MARK: subscribe2
@@ -111,7 +124,33 @@ class ExamplesViewController: UIViewController {
     public func subscribe(onNext: ((Self.E) -> Swift.Void)? = default, onError: ((Error) -> Swift.Void)? = default, onCompleted: (() -> Swift.Void)? = default, onDisposed: (() -> Swift.Void)? = default) -> Disposable
     */
     func subscribe2() {
-
+        let _ = Observable.from([1,2,3,4,5])
+            .map({ (n) -> Int in
+                do {
+                    try self.checkIfTwo(n)
+                } catch (let error) {
+                    print(error)
+                    return -1
+                }
+                
+                if n == 2 {
+                    throw NSError(domain: "", code: 100, userInfo: nil)
+                }
+                return n
+            })
+            .subscribe(onNext: { (next) in
+                print(next)
+            }, onError: { (error) in
+                print(error)
+            }, onCompleted: {
+                print("completed!")
+            }).addDisposableTo(disposeBag)
+    }
+    
+    func checkIfTwo(_ n: Int) throws {
+        if n == 2 {
+            throw NSError(domain: "", code: 100, userInfo: nil)
+        }
     }
     
     // MARK: SubscribeOn
@@ -132,6 +171,23 @@ class ExamplesViewController: UIViewController {
     public func subscribeOn(_ scheduler: ImmediateSchedulerType) -> RxSwift.Observable<Self.E>
     */
     func subscribeOn() {
+        let _ = Observable<Int>.create { (observer) -> Disposable in
+            Thread.sleep(forTimeInterval: 2)
+            observer.onNext(1)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }.subscribe(onNext: { (element) in
+            print(element)
+        }, onError: { (error) in
+            print(error)
+        }, onCompleted: {
+            print("completed")
+        }, onDisposed: {
+            print("disposed")
+        })
+        
+        print("koniec")
     }
     
     
@@ -149,7 +205,25 @@ class ExamplesViewController: UIViewController {
     public func observeOn(_ scheduler: ImmediateSchedulerType) -> RxSwift.Observable<Self.E>
     */
     func observeOn() {
-
+        let _ = Observable<Int>.create { (observer) -> Disposable in
+                Thread.sleep(forTimeInterval: 2)
+                observer.onNext(1)
+                observer.onCompleted()
+                
+                return Disposables.create()
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: DispatchQoS.default))
+            .subscribe(onNext: { (element) in
+                print(Thread.current)
+                print(element)
+            }, onError: { (error) in
+                print(error)
+            }, onCompleted: {
+                print("completed")
+            }, onDisposed: {
+                print("disposed")
+            })
     }
     
     /**
@@ -177,6 +251,17 @@ class ExamplesViewController: UIViewController {
     public func merge() -> RxSwift.Observable<Self.E.E>
     */
     func merge() {
+        let oddObservable = Observable.from([1,3,5,7])
+        let evenObservable = Observable.from([2,4,6,8])
+        
+        let _ = Observable.of(oddObservable,evenObservable).merge().subscribe { (event) in
+            switch event {
+            case .next(let e):
+                print(e)
+            default:
+                break
+            }
+        }.addDisposableTo(disposeBag)
 
     }
     
@@ -198,7 +283,13 @@ class ExamplesViewController: UIViewController {
      public func scan<A>(_ seed: A, accumulator: @escaping (A, Self.E) throws -> A) -> RxSwift.Observable<A>
      */
     func scan() {
-        
+        let _ = Observable<Int>
+            .interval(1.0, scheduler: MainScheduler.instance)
+            .take(7)
+            .filter { $0 != 0 }
+            .scan(1) { (before, after) in
+                return before * after
+            }
+            .bindNext{ print ($0) }
     }
-    
 }
