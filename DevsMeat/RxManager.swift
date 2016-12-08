@@ -15,31 +15,71 @@ class RxManager {
     
     
     // Imitujemy logowanie
-//    static func login() -> Observable<User> {
-//    }
+    static func login() -> Observable<User> {
+        return Observable.just(User())
+    }
 
     // Sciaganie ustawien uzytkownika
-//    static func getSettings() -> Observable<Bool> { // isTableView: Bool
-//    }
+    static func getSettings() -> Observable<Bool> { // isTableView: Bool
+        return Observable.just(true)
+    }
 
     // Pobranie listy przyjaciol z API
-//    static func getFriends(count: Int, gender: Gender) -> Observable<[Friend]> {
-//        
-//        Alamofire.request("http://uinames.com/api/?amount=\(count)&gender=\(gender.rawValue)&region=poland")
-//            .validate(statusCode: 200...300)
-//            .responseArray(completionHandler: { (response: DataResponse<[Friend]>) in
-//                
-//        })
-//    }
+    static func getFriends(count: Int, gender: Gender) -> Observable<[Friend]> {
+        
+        let friendsObservable = Observable<[Friend]>.create { (observer) -> Disposable in
+            
+                let request = Alamofire.request("http://uinames.com/api/?amount=\(count)&gender=\(gender.rawValue)&region=poland")
+                    .validate(statusCode: 200...300)
+                    .responseArray(completionHandler: { (response: DataResponse<[Friend]>) in
+                        switch response.result {
+                        case .success(let value):
+                            observer.onNext(value)
+                        case .failure(let error):
+                            observer.onError(error)
+                        }
+                    })
+            
+            return Disposables.create {
+                request.cancel()
+            }
+        }
+        
+        return friendsObservable
+    }
     
     // Wywolanie getFriends + manipulacja danymi
-//    static func friends() -> Observable<[Friend]> {
-//    }
+    static func friends() -> Observable<[Friend]> {
+        let men = getFriends(count: 10, gender: .male)
+        let women = getFriends(count: 10, gender: .female)
+        
+        let obsevrable = Observable.of(men, women).merge().fromArray().flatMap({ (friend) -> Observable<Friend> in
+            
+            return RxManager.getQuote(for: friend)
+            })
+            .toArray()
+        
+        return obsevrable
+    }
     
     // Pobieranie cytatu dla kazdego uzytkownika
-//    static func getQuote(for friend: Friend) -> Observable<Friend> {
-//
-//    }
+    static func getQuote(for friend: Friend) -> Observable<Friend> {
+        
+        let observable = Observable<Friend>.create { (observer) -> Disposable in
+        
+            let key = Int(arc4random()) % QuoteProvider.quoteArray.count
+            let quote = QuoteProvider.quoteArray[key]
+            
+            friend.quote = quote
+            
+            observer.onNext(friend)
+            observer.onCompleted()
+            
+            return Disposables.create()
+        }
+        
+        return observable
+    }
     
 }
 

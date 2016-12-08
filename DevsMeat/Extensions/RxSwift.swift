@@ -11,5 +11,13 @@ import RxSwift
 
 extension ObservableType where E == Array<Friend> {
     
-    // fromArray: [Friend] -> Friend
+    func fromArray() -> Observable<Friend> {
+        
+        let observable = flatMap { friends -> Observable<Friend> in
+            
+            return Observable.from(friends)
+        }
+        
+        return observable
+    }
 }
