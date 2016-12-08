@@ -14,11 +14,22 @@ import RxCocoa
 class FriendListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var friends = Variable([Friend])
+    var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.rowHeight = 80.0
+        
+        friends.asDriver().driver(self.tableView.rx.items(cellIdentifier: "cell", cellType: FriendViewCell.self)) { (row, friend, cell) in
+            cell.fiend = friend
+        }.addDisposableBag(disposeBag)
+        
+        self.tableView.rx.itemSelected.asObservable().flatMap { (indexPath: IndexPath) in
+            print(indexPath.row)
+        }
         
         // tableViewDataSource z wykorzystaniem rx 
         // tableViewDelegate z wykorzystaniem rx
